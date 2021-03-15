@@ -1,0 +1,58 @@
+<section class="signup pt-5" >
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-form">
+                <h2 class="form-title">Sign up</h2>
+                <div class="alert alert-danger"  *ngIf="err">{{err}}</div>
+                <form  [formGroup]="myForm" class="register-form" id="register-form">
+                    <div class="form-group">
+                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input type="text" name="username" formControlName="username" class="form-control" id="Username">
+                        <p *ngIf="myForm.controls.username.errors  && myForm.controls.username.touched" class="alert alert-danger">
+                            username is not valid
+                            <span *ngIf="myForm.controls.username.errors.required && myForm.controls.username.touched">
+                                plz fill username input
+                            </span>
+                            <span *ngIf="myForm.controls.username.errors.maxlength  && myForm.controls.username.touched">
+                              max length 32 char
+                          </span>
+                        </p>  
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                        <input type="email" name="email" formControlName="email"  class="form-control" id="email" placeholder="abc@mail.com">
+                        <p *ngIf="myForm.controls.email.errors && myForm.controls.email.touched" class="alert alert-danger">
+                            email is not valid
+                            <span *ngIf="myForm.controls.email.errors.required  && myForm.controls.email.touched">
+                                plz fill email input
+                            </span>
+                        </p> 
+                    </div>
+                    <div class="form-group">
+                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="password" formControlName="password" class="form-control" id="Password">
+                        <p *ngIf="myForm.controls.password.errors  && myForm.controls.password.touched" class="alert alert-danger">
+                            password is not valid
+                            <span *ngIf="myForm.controls.password.errors.required  && myForm.controls.password.touched">
+                                plz fill password input
+                            </span>
+                            <span *ngIf="myForm.controls.password.errors.minlength  && myForm.controls.password.touched">
+                              min password length is 8
+                          </span>
+                        </p> 
+                    </div>
+                  
+                    <div class="form-group form-button">
+                        <input type="submit" class="btn btn-primary" value="register"
+      (click)="register()"/>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="signup-image">
+                <figure><img src="assets/signup-image.jpg" alt="sing up image"></figure>
+                <a (click)="gotologin()" class="btn btn-primary">I am already member</a>
+            </div>
+        </div>
+    </div>
+</section>

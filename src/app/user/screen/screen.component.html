@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row justify-content-around pt-5 pb-4">
+        <div class="alert alert-danger"  *ngIf="this.myService.err">{{this.myService.err}}</div>
+<div class="card text-dark bg-light mb-3"  *ngFor="let todo of this.myService.todos" style="max-width: 45rem;">
+    <div class="card-header">created-at: {{todo.time}}</div>
+
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)" (click)="getindex(todo._id)" (click)="setDefault()">update Todo</button>
+    <button class="btn btn-lg alert-danger"(click)="deleteT(todo._id)" >delete Todo</button>
+    
+    <div class="card-body">
+      <h5 class="card-title">Title : {{todo.title}}</h5>
+      <p class="card-text">{{todo.body}}</p>
+      <p class="card-text">{{todo.group}}</p>
+
+      <p class="card-text" style="color: brown;">status : {{todo.status}}</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<ng-template #mymodal let-modal>
+    <h4 class="text-center p-4">
+  update
+  </h4>
+  <form [formGroup]="myForm" class="row g-3 ">
+    <div class="form-group col-12">
+  
+      <div class="col-12"  >
+          <label for="title" class="form-label">title</label>
+          <input type="title" name="title" formControlName="title"  formControlValue="todo.title" class="form-control" id="title" >
+          <p *ngIf="myForm.controls.title.errors && myForm.controls.title.touched" class="alert alert-danger">
+            title is not valid
+            <span *ngIf="myForm.controls.title.errors.required && myForm.controls.title.touched">
+                plz fill title input
+            </span>
+            <span *ngIf="myForm.controls.title.errors.maxlength && myForm.controls.title.touched">
+            length must be less than 100
+            </span>
+            <span *ngIf="myForm.controls.title.errors.mixlength && myForm.controls.title.touched">
+              length must be more than 3
+              </span>
+        </p>  
+      </div>
+  
+      <div class="col-12">
+        <label for="body" class="form-label">body</label>
+        <input type="body" name="body" formControlName="body" value=`${todo.body}`  class="form-control" id="body" placeholder="body">
+        <p *ngIf="myForm.controls.body.errors && myForm.controls.body.touched" class="alert alert-danger">
+          body is not valid
+          <span *ngIf="myForm.controls.body.errors.required && myForm.controls.body.touched">
+              plz fill body input
+          </span>
+          <span *ngIf="myForm.controls.body.errors.maxlength && myForm.controls.body.touched">
+          length must be less than 500
+          </span>
+          <span *ngIf="myForm.controls.body.errors.mixlength && myForm.controls.body.touched">
+            length must be more than 10
+            </span>
+      </p> 
+    </div>
+  
+    <div class="col-md-4 p-4" >
+      <label for="status" class="form-label">status</label>
+      <select id="status" formControlName="status" class="form-select" >
+        <option selected>to-do</option>
+        <option>in-progress</option>
+        <option>done</option>
+          <p *ngIf="myForm.controls.status.errors && myForm.controls.status.touched" class="alert alert-danger">
+        status  is required
+    </p>
+      </select>
+    </div>
+
+    <div class="col-md-4 p-4" >
+        <label for="group " class="form-label">Groups</label>
+        <select id="group" formControlName="group" class="form-select">
+          <option selected>any</option>
+          <option *ngFor=" let g of myService.groups" >{{g.gname}}</option>
+        </select>
+        <p *ngIf="myForm.controls.group.errors && myForm.controls.group.touched" class="alert alert-danger">
+          groups  is required
+      </p> 
+      </div>
+  
+  
+  
+  
+    <div class="form-group text-center">
+        <input type="button" class="btn btn-dark" value="update"
+        (click)="updateT(this.myService.todos[i]._id)"(click)="modal.close('Save click')"
+        />
+    </div>
+  
+  
+  
+      </div>
+  
+   
+    
+  </form>
+  </ng-template>
+  
+  
