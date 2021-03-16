@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { FormGroupName } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,12 @@ export class TodosService {
 
   constructor(private myClient:HttpClient){ }
 
-  private addTodos:string = "http://localhost:3000/api/todos/addTodo";
-  private addGroups:string = "http://localhost:3000/api/groups/addGroup";
-  private updateTodos:string = "http://localhost:3000/api/todos/updateTodo";
-  private deleteTodos:string = "http://localhost:3000/api/todos/deleteTodo";
-  private get:string = "http://localhost:3000/api/todos/";
-  private getgroups:string = "http://localhost:3000/api/groups/getGroups";
+  private addTodos:string = `${environment.api}/api/todos/addTodo`;
+  private addGroups:string = `${environment.api}/api/groups/addGroup`;
+  private updateTodos:string = `${environment.api}/api/todos/updateTodo`;
+  private deleteTodos:string = `${environment.api}/api/todos/deleteTodo`;
+  private get:string = `${environment.api}/api/todos`;
+  private getgroups:string = `${environment.api}/api/todos/addTodo`;
 
   todos
   groups
