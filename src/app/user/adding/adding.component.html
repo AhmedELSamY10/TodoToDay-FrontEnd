@@ -90,8 +90,8 @@
     <div class="col-md-4 p-4" >
         <label for="group " class="form-label">Groups</label>
         <select id="group" formControlName="group" class="form-select">
-          <option selected>any</option>
           <option *ngFor=" let g of myService.groups" >{{g.gname}}</option>
+          <option selected>any</option>
         </select>
         <p *ngIf="myForm.controls.group.errors && myForm.controls.group.touched" class="alert alert-danger">
           groups  is required
