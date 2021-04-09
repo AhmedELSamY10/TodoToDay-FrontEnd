@@ -15,7 +15,7 @@ export class TodosService {
   private updateTodos:string = `${environment.api}/api/todos/updateTodo`;
   private deleteTodos:string = `${environment.api}/api/todos/deleteTodo`;
   private get:string = `${environment.api}/api/todos`;
-  private getgroups:string = `${environment.api}/api/todos/addTodo`;
+  private getgroups:string = `${environment.api}/api/groups/getGroups`;
 
   todos
   groups
